@@ -9,7 +9,7 @@ Stack: **Next.js** (App Router) + **TypeScript** + **Tailwind** + **Supabase**
 
 ## What's built so far
 
-Build steps 1 and 2 from `CLAUDE.md`:
+Build steps 1–3 from `CLAUDE.md`:
 
 1. **Auth + profiles + onboarding** — email/password sign in & sign up, session
    refresh in middleware, a route to create your profile (username, display
@@ -17,8 +17,13 @@ Build steps 1 and 2 from `CLAUDE.md`:
 2. **Shop & drink catalog + search + seed** — browse shops, view a shop's menu
    and locations, and search drinks/shops by name. Verified (chain) drinks are
    badged; the seed script hand-seeds the major chains.
+3. **Log a drink** — each drink has a detail page (derived rating + recent
+   logs); from there a log form captures a half-star rating, review, drink
+   date, sugar/ice/toppings/price customization, optional location, and a
+   photo uploaded to Supabase Storage. Server actions only, no client form
+   library. Re-logging the same drink is flagged automatically.
 
-Steps 3+ (logging, stats, want-to-try, matching, PWA) are not built yet.
+Steps 4+ (profile feed/stats/map, want-to-try, matching, PWA) are not built yet.
 
 ## Setup
 
@@ -77,13 +82,15 @@ src/
     (onboarding)/onboarding/# profile creation
     auth/callback/          # email-confirmation / OAuth code exchange
     shops/                  # catalog list + [slug] detail + drink/shop cards
+    drinks/[id]/            # drink detail + logs; [id]/log/ is the log form
     search/                 # cross-catalog search
   lib/
     supabase/               # server, browser, and middleware clients (@supabase/ssr)
     profile.ts              # current user + profile helper
     catalog.ts              # catalog queries (server-side)
+    logs.ts                 # drink + log queries (server-side)
   types/db.ts               # generated DB types (placeholder until linked)
 supabase/
-  migrations/               # 0001 base schema, 0002 profile + catalog policies
+  migrations/               # 0001 schema, 0002 policies, 0003 log-photo storage
   seed.sql                  # hand-seeded verified chains
 ```

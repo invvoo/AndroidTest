@@ -118,6 +118,42 @@ export interface Database {
         Update: Partial<Database["public"]["Tables"]["drinks"]["Insert"]>;
         Relationships: [];
       };
+      logs: {
+        Row: {
+          id: string;
+          user_id: string;
+          drink_id: string;
+          location_id: string | null;
+          drank_on: string;
+          rating: number | null;
+          review: string | null;
+          photo_url: string | null;
+          is_relog: boolean;
+          sugar_pct: number | null;
+          ice_level: string | null;
+          toppings: string[] | null;
+          price_cents: number | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          drink_id: string;
+          location_id?: string | null;
+          drank_on?: string;
+          rating?: number | null;
+          review?: string | null;
+          photo_url?: string | null;
+          is_relog?: boolean;
+          sugar_pct?: number | null;
+          ice_level?: string | null;
+          toppings?: string[] | null;
+          price_cents?: number | null;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["logs"]["Insert"]>;
+        Relationships: [];
+      };
     };
     Views: { [key: string]: never };
     Functions: {
