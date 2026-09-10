@@ -1,0 +1,20 @@
+# Minimal Supabase CLI config. Run `supabase init` to regenerate the
+# full file for your CLI version if needed.
+project_id = "boba-app"
+
+[db]
+port = 54322
+major_version = 15
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+
+[auth]
+enable_signup = true
+# Set to your deploy URL(s) in production.
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000/auth/callback"]
+
+[auth.email]
+enable_confirmations = false

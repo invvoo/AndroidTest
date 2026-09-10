@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --color-milk: #fbf6ef;
+  --color-tea: #7a4a24;
+  --color-tea-dark: #5a3417;
+  --color-taro: #b7a3e0;
+  --color-boba: #2a1b10;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--color-milk);
+  color: var(--color-boba);
+}
