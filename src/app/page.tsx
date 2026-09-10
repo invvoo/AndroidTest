@@ -50,7 +50,10 @@ export default async function HomePage() {
             Welcome back, {profile.display_name || `@${profile.username}`}
           </h2>
           <p className="mt-1 text-sm text-tea">
-            Logging, stats, and your boba map are coming next (build step 3+).
+            <Link href={`/u/${profile.username}`} className="underline">
+              Your profile
+            </Link>{" "}
+            has your logs, stats, and boba map.
           </p>
         </section>
       )}

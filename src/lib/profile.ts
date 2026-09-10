@@ -24,3 +24,16 @@ export async function getCurrentUserAndProfile() {
 
   return { user, profile: profile as Profile | null };
 }
+
+/** Public profile lookup by username (RLS keeps blocked parties out). */
+export async function getProfileByUsername(
+  username: string,
+): Promise<Profile | null> {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("username", username)
+    .maybeSingle();
+  return (data as Profile | null) ?? null;
+}

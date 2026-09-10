@@ -155,7 +155,23 @@ export interface Database {
         Relationships: [];
       };
     };
-    Views: { [key: string]: never };
+    Views: {
+      log_map_points: {
+        Row: {
+          log_id: string | null;
+          user_id: string | null;
+          drink_id: string | null;
+          drink_name: string | null;
+          shop_name: string | null;
+          city: string | null;
+          drank_on: string | null;
+          rating: number | null;
+          lat: number | null;
+          lng: number | null;
+        };
+        Relationships: [];
+      };
+    };
     Functions: {
       is_blocked: {
         Args: { a: string; b: string };

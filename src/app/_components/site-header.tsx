@@ -21,9 +21,16 @@ export default async function SiteHeader() {
         <div className="ml-auto flex items-center gap-3">
           {user ? (
             <>
-              <span className="text-sm text-tea">
-                {profile?.username ? `@${profile.username}` : user.email}
-              </span>
+              {profile?.username ? (
+                <Link
+                  href={`/u/${profile.username}`}
+                  className="text-sm text-tea hover:text-tea-dark"
+                >
+                  @{profile.username}
+                </Link>
+              ) : (
+                <span className="text-sm text-tea">{user.email}</span>
+              )}
               <form action={signOut}>
                 <button
                   type="submit"

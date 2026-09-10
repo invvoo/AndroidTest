@@ -9,7 +9,7 @@ Stack: **Next.js** (App Router) + **TypeScript** + **Tailwind** + **Supabase**
 
 ## What's built so far
 
-Build steps 1–3 from `CLAUDE.md`:
+Build steps 1–4 from `CLAUDE.md`:
 
 1. **Auth + profiles + onboarding** — email/password sign in & sign up, session
    refresh in middleware, a route to create your profile (username, display
@@ -22,8 +22,12 @@ Build steps 1–3 from `CLAUDE.md`:
    date, sugar/ice/toppings/price customization, optional location, and a
    photo uploaded to Supabase Storage. Server actions only, no client form
    library. Re-logging the same drink is flagged automatically.
+4. **Profile** (`/u/[username]`, public) — header, live stats (logs, unique
+   drinks/shops, avg rating computed straight from `logs`), a reverse-chron
+   log feed, and a boba-history map (Leaflet + OpenStreetMap) pinning the
+   storefronts you logged. `/profile` redirects to your own.
 
-Steps 4+ (profile feed/stats/map, want-to-try, matching, PWA) are not built yet.
+Steps 5+ (want-to-try, matching, block/report/phone, PWA) are not built yet.
 
 ## Setup
 
@@ -83,14 +87,16 @@ src/
     auth/callback/          # email-confirmation / OAuth code exchange
     shops/                  # catalog list + [slug] detail + drink/shop cards
     drinks/[id]/            # drink detail + logs; [id]/log/ is the log form
+    u/[username]/           # public profile: stats, log feed, boba map
+    profile/                # redirect to the current user's profile
     search/                 # cross-catalog search
   lib/
     supabase/               # server, browser, and middleware clients (@supabase/ssr)
     profile.ts              # current user + profile helper
     catalog.ts              # catalog queries (server-side)
-    logs.ts                 # drink + log queries (server-side)
+    logs.ts                 # drink + log queries, profile stats/feed/map
   types/db.ts               # generated DB types (placeholder until linked)
 supabase/
-  migrations/               # 0001 schema, 0002 policies, 0003 log-photo storage
+  migrations/               # 0001 schema, 0002 policies, 0003 storage, 0004 map view
   seed.sql                  # hand-seeded verified chains
 ```
